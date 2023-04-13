@@ -8,5 +8,58 @@
  a:hover
  {color:#7C0000; }
 
+ /* index.php */
+ .form{
+     display: grid;
+     width: 190px;
+     gap: 1vh;
+ }
 
-  
+ #btn-in {
+     width: 30%;
+ }
+
+ .form label {
+     display: flex;
+     align-self: center;
+     text-align: center;
+ }
+
+ .form label input{
+     justify-self: end;
+     align-self: end;
+     margin-left: auto;
+ }
+
+/* order.php */
+  .type-ord{
+    font-size: 12px;
+    border: solid black 2px;
+    margin: 0;
+}
+
+.type-ord tr{
+    border: solid black 1px;
+    margin: 0;
+}
+
+.type-ord tr td {
+    border: solid black 1px;
+    margin: 0;
+}
+.radios{
+    display: grid;
+    width: 60px;
+    margin-top: 10px;
+}
+.radios label{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.radios label input {
+    margin-left: auto;
+}

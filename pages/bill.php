@@ -1,4 +1,8 @@
-﻿<html>
+﻿<?php
+include "../backend/checkAuthentication.php";
+include "../backend/bill.php";
+?>
+<html>
    <head>
       <title>Работа</title>
       <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -32,95 +36,257 @@
                   <tr>
                      <td valign="top" height="338" width="42"></td>
                      <td valign="top" height="338" width="492">
-                        <table cellpadding="0" cellspacing="0" border="0">
-                           <tr>
-                              <td width="492" valign="top" height="106">
+<?php
+if($flagShowObj){
+    echo '
+                         <form action="basket.php" method="POST">
+                             <table cellpadding="0" cellspacing="0" border="0">
+                                 <tr>
+                                     <td width="492" valign="top" height="106">
 
+                                         <div style="margin-left:1px; margin-top:2px; margin-right:10px "><br>
+                                             <div style="margin-left:5px "><img src="../images/1_p1.gif" align="left"></div>
+                                             <div style="margin-left:95px "><font class="title">Дополнения</font><br>
+                                                 <table class="type-ord" style="font-size: 10px;">
+                                                     <tr>
+                                                         <td>
+                                                             Тип путевки
+                                                         </td>
+                                                         <td colspan="3" style="text-align: center">
+                                                             Cтрана
+                                                         </td>
+                                                     </tr>';
+                                                     if ($_SESSION['type'] == 'cruise'){
+                                                         echo'
+                                                     <tr>
+                                                         <td>
+                                                             Круиз
+                                                         </td>
+                                                         <td>
+                                                             <label for="italy">Италия(+200)<input type="radio" name="country" id="italy" value="italy"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="horv">Хорватия(+100)<input type="radio" name="country" id="horv" value="horv"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="shvec">Швеция(+300)<input type="radio" name="country" id="shvec" value="shvec"></label>
+                                                         </td>
+                                                     </tr>
+                                                     ';
+                                                     }
+                                                         else if ($_SESSION['type']== 'safari'){
+                                                             echo'
+                                                     <tr>
+                                                         <td>
+                                                             Сафари
+                                                         </td>
+                                                         <td>
+                                                             <label for="ken">Кения(+500)<input type="radio" name="country" id="ken" value="ken"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="mar">Марокко(+300)<input type="radio" name="country" id="mar" value="mar"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="uar">ЮАР(+800)<input type="radio" name="country" id="uar" value="uar"></label>
+                                                         </td>
+                                                     </tr>
+                                                     ';}
+                                                             else {
+                                                                 echo '
+                                                         
+                                                     <tr>
+                                                         <td>
+                                                             Гастротур
+                                                         </td>
+                                                         <td>
+                                                             <label for="dan">Дания(+50)<input type="radio" name="country" id="dan" value="dan"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="norv">Норвегия(+100)<input type="radio" name="country" id="norv" value="norv"></label>
+                                                         </td>
+                                                         <td>
+                                                             <label for="france">Франция(+80)<input type="radio" name="country" id="france" value="france"></label>
+                                                         </td>
+                                                     </tr>';};
+                                                             echo '
+                                                 </table>
+                                                 <br>
 
-                                 <div style="margin-left:1px; margin-top:2px; margin-right:10px "><br>
-                                    <div style="margin-left:5px "><img src="../images/1_p1.gif" align="left"></div>
-                                    <div style="margin-left:95px "><font class="title">   </font>
-
-                                    </div> 
-                                 </div>
-                              </td>
-                           </tr>
-                           <tr>
-                              <td width="492" valign="top" height="232">
-                                 <table cellpadding="0" cellspacing="0" border="0">
-                                    <tr>
-                                       <td valign="top" height="232" width="248">
-                                          <div style="margin-left:6px; margin-top:2px; "><img src="../images/hl.gif"></div>
-                                          <div style="margin-left:6px; margin-top:7px; "><img src="../images/1_w2.gif"></div>
-                                          <div style="margin-left:6px; margin-top:11px; margin-right:0px "><font class="title"> </font></div>
-                                          <div style="margin-top:10px; margin-left:6px ">
+                                             </div>
+                                         </div>
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td width="492" valign="top" height="232">
+                                         <table cellpadding="0" cellspacing="0" border="0">
+                                             <tr>
+                                                 <td valign="top" height="232" width="248">
+                                                     <div style="margin-left:6px; margin-top:2px; "><img src="../images/hl.gif"></div>
+                                                     <div style="margin-left:6px; margin-top:7px; "><img src="../images/1_w2.gif"></div>
+                                                     <table class="type-ord">
+                                                         <tr>
+                                                             <td style="margin: 0">
+                                                                 Тип путевки
+                                                             </td>
+                                                             ';
+                                                if ($_SESSION['type'] == 'cruise'){
+                                                         echo'
+                                                             <td>
+                                                                 Круиз
+                                                             </td>';
+                                                }
+                                                else if($_SESSION['type']== 'safari'){
+                                                    echo '
                                            
-                                          </div>
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                            
-                                          </div>
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                           
-                                          </div> 
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                            
-                                          </div> 
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                            
-                                          </div> 
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                          
-                                          </div> 
+                                                             <td>
+                                                                 Сафари
+                                                             </td>';
+                                                }
+                                                else {
+                                                echo '
+                                                
+                                                             <td>
+                                                                 Гастротур
+                                                             </td>';}
+                                                echo '
+                                                         </tr>
+                                                         <tr>
+                                                             <td>
+                                                                 Название
+                                                             </td>';
+                                                             if ($_SESSION['type'] == 'cruise'){
+                                                         echo'
+                                                             <td>
+                                                                 Развлечени
+                                                             </td>';}
+                                                             else if($_SESSION['type'] == 'safari'){
+                                                             echo '<td>
+                                                                 Экскурсии
+                                                             </td>';}
+                                                        else {
+                                                            echo ' 
+                                                             <td>
+                                                                 Места
+                                                             </td>';}
+                                                                echo '
+                                                         </tr>
+                                                         <tr>
+                                                             <td>
 
-                                       <td valign="top" height="215" width="1" background="../images/tal.gif" style="background-repeat:repeat-y"></td>
-                                       <td valign="top" height="215" width="243">
-                                          <div style="margin-left:22px; margin-top:2px; "><img src="../images/hl.gif"></div>
-                                          <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w2.gif"></div>
-                                          <div style="margin-left:22px; margin-top:13px; ">
+                                                             </td>';
+                                                             if ($_SESSION['type'] == 'cruise'){
+                                                         echo'
+                                                             <td>
+                                                                 <label for="sauna"> Сауна(+50) <input type="checkbox" id="sauna" name="n1"></label>
+                                                             </td>';}
+                                                        else if($_SESSION['type'] == 'safari'){
+                                                            echo '
+                                                             <td>
+                                                                 <label for="saun"> Кормление животных(+100) <input type="checkbox" name="n1"></label>
+                                                             </td>';}
+                                                        else {
+                                                            echo ' 
+                                                             <td>
+                                                                 <label for="saun"> Местный рынок(+50) <input type="checkbox" name="n1"></label>
+                                                             </td>';}
+                                                                echo '
+                                                         </tr>
+                                                         <tr>
+                                                             <td>
 
-                                             <div style="margin-left:0px; margin-top:0px; margin-right:0px "><font class="title">   </font></div>
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                            
-                                          </div> 
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                             
-                                          </div>
-                                          <div style="margin-top:6px; margin-left:6px ">
-                                             
-                                          </div>
+                                                             </td>';
+                                                            if ($_SESSION['type'] == 'cruise'){
+                                                                echo'
+                                                             <td>
+                                                                 <label for="saun"> Бассейн(+100) <input type="checkbox" name="n2"></label>
+                                                             </td>';}
+                                                            else if($_SESSION['type'] == 'safari'){
+                                                            echo '
+                                                             <td>
+                                                                 <label for="saun"> Фотоохота(+50) <input type="checkbox" name="n2"></label>
+                                                             </td>';}
+                                                            else{
+                                                                echo '
 
-                                             <div style="margin-left:67px; margin-top:7px; margin-right:10px "><img src="../images/pointer.gif"><a href="#"><img src="../images/read_more.gif" border="0"></a></div>
-                                          </div>
-                                          <div style="margin-left:22px; margin-top:16px; "><img src="../images/hl.gif"></div>
-                                          <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w4.gif"></div>
-                                          <div style="margin-left:22px; margin-top:9px; ">
-                                             <img src="../images/1_p3.gif" align="left">
-                                         
+                                                             <td>
+                                                                 <label for="saun"> Приготовление еды(+200) <input type="checkbox" name="n2"></label>
+                                                             </td>';}
+                                                        echo '
+                                                         </tr>
+                                                         <tr>
+                                                             <td>
 
-    
-                                             
-                                             
-                                             <div style="margin-left:67px; margin-top:0px; margin-right:0px ">
-<font class="title">
+                                                             </td>
+                                                             ';
+if ($_SESSION['type'] == 'cruise'){
+    echo'<td>
+                                                                 <label for="saun"> Бар(+200) <input type="checkbox" name="n3"></label>
+                                                             </td>';}
+else if($_SESSION['type'] == 'safari'){
+    echo '
+                                                             <td>
+                                                                 <label for="saun"> Разделывание туши(+200) <input type="checkbox" name="n3"></label>
+                                                             </td>';}
+else{ echo '
+                                                             <td>
+                                                                 <label for="saun"> Виноферма(+100) <input type="checkbox" name="n3"></label>
+                                                             </td>';}
+    echo '
+                                                         </tr>
+                                                     </table>
 
-</font><br>
 
-<div> 
 
-</div>
+                                                 <td valign="top" height="215" width="1" background="../images/tal.gif" style="background-repeat:repeat-y"></td>
+                                                 <td valign="top" height="215" width="243">
+                                                     <div style="margin-left:22px; margin-top:2px; "><img src="../images/hl.gif"></div>
+                                                     <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w2.gif"></div>
+                                                     <div style="margin-left:22px; margin-top:13px; ">
 
-                                            
 
- 
-                                             
-                                             <div style="margin-left:0px; margin-top:7px; margin-right:10px "><img src="../images/pointer.gif"><a href="#"><img src="../images/read_more.gif" border="0"></a></div>
-                                          </div>
-                                       </td>
-                                    </tr>
-                                 </table>
-                              </td>
-                           </tr>
-                        </table>
+                                                            ';
+                                                        if (isset($_POST['type-of-order'])){
+                                                        echo '
+                                                            <input type="number" name="days" placeholder="Кол-во дней" required>
+                                                            ';
+                                                        }
+                                                        echo '
+                                                        
+
+
+                                                         <br><br><br><br>
+
+                                                     </div>
+                                                     <div style="margin-left:22px; margin-top:16px; "><img src="../images/hl.gif"></div>
+                                                     <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w4.gif"></div>
+                                                     <div style="margin-left:22px; margin-top:9px; ">
+
+                                                         <input type="button" value="Вернуться назад" onclick="history.back()">
+                                                         <input type="submit" value="Далее">
+                                                     </div>
+                                                     </div>
+
+
+
+
+                                                     </div>
+                                                 </td>
+                                             </tr>
+                                         </table>
+                                     </td>
+                                 </tr>
+                             </table>
+                         </form>';
+                        }
+                        else {
+                            echo '<p>Сначала нужно авторизоваться </p>
+                                                            <form action="../index.php">
+                                                            <input type="submit" value="Авторизация">
+                                                            </form>';
+                        }
+                        ?>
+
+
                      </td>
                      <td valign="top" height="338" width="49"></td>
                   </tr>

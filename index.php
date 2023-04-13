@@ -1,3 +1,7 @@
+<?php
+include 'backend/index.php'
+?>
+
 <html>
     <head>
         <title>Работа</title>
@@ -30,17 +34,44 @@
                         <tr>
                             <td valign="top" height="338" width="42"></td>
                             <td valign="top" height="338" width="492">
+
                                 <table cellpadding="0" cellspacing="0" border="0">
                                     <tr>
                                         <td width="492" valign="top" height="106">
 
                                             <div style="margin-left:1px; margin-top:2px; margin-right:10px "><br>
                                                 <div style="margin-left:5px "><img src="./images/1_p1.gif" align="left"></div>
-                                                <div style="margin-left:95px "><font class="title">Название</font><br>                                  
+                                                <div style="margin-left:95px "><font class="title">Авторизация</font><br>
 
 
 
-                                                </div> 
+                                                    <?php
+                                                    if (!$flagAuth) {
+                                                        echo '
+                                                        <form class="form" action="index.php" method="POST">
+
+                                                    <label for="login" >Логин   <input id="login" name="login" type="text" placeholder="Логин(admin)" required></label>
+                                                    <label for="password">Пароль  <input id="password" name="password" type="password" placeholder="Пароль(123)" required></label>
+                                                    <input class="btn-in" id="btn-in" name="btn-in" type="submit" value="Войти">
+                                                    </form>
+                                                    ';
+                                                        echo "<br>";
+                                                        echo "<p>Авторизация не пройдена</p>";
+                                                    }
+                                                    else{
+                                                        echo '
+                                                        <form class="form" action="pages/order.php" method="POST">
+                                                        <input type="submit" value="К заказу">
+                                                        </form>
+                                                        <form class="form" action="index.php" method="POST">
+                                                        <input type="submit" name="exit" value="Выйти">
+                                                        </form>
+                                                        ';
+                                                        echo "<p>Авторизация пройдена!!!</p>";
+                                                    }
+                                                    ?>
+
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -79,6 +110,7 @@
                                         </td>
                                     </tr>
                                 </table>
+
                             </td>
                             <td valign="top" height="338" width="49"></td>
                         </tr>

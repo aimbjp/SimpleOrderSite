@@ -1,3 +1,10 @@
+<?php
+include "../backend/checkAuthentication.php";
+include "../backend/basket.php";
+include "../backend/writeFile.php";
+include "../backend/writeMail.php";
+?>
+
 <html>
     <head>
         <title>Работа</title>
@@ -25,6 +32,8 @@
                 </td>
             </tr>
             <tr>
+                <form action="basket.php">
+
                 <td valign="top" width="583" height="338"  bgcolor="#FFFFFF">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <tr>
@@ -36,7 +45,7 @@
 
                                             <div style="margin-left:1px; margin-top:2px; margin-right:10px "><br>
                                                 <div style="margin-left:5px "><img src="../images/1_p1.gif" align="left"></div>
-                                                <div style="margin-left:95px "><font class="title">Название</font><br>
+                                                <div style="margin-left:95px "><font class="title">Корзина</font><br>
 
                                                     
                                                     
@@ -54,10 +63,35 @@
                                                         <div style="margin-left:6px; margin-top:2px; "><img src="../images/hl.gif"></div>
                                                         <div style="margin-left:6px; margin-top:7px; "><img src="../images/1_w2.gif"></div>
 
-                                                        
+                                                    <?php
+                                                    if($flagOrderDone){
+                                                        echo '
+                                                            <h4>Информация о заказе</h4>
+                                                            <p>Имя: '. $_SESSION['name'] . '</p>
+                                                            <p>Номер телефона: '. $_SESSION['phone'] .'</p>
+                                                            <p>Почта: '. $_SESSION['email'] .'</p>
+                                                            <p>Тип путешествия: '. $arrType[$_SESSION['type']]['name'] .'</p>
+                                                            <p>Вид питания: '. $arrEat[$_SESSION['eat']]['name'] .'</p>
+                                                            <p>Страна: '. $arrCountryNames[$_SESSION['country']].'</p>
+                                                            <p>Кол-во дней: '. $_SESSION['Days'] . '</p>
+                                                            <p>Дополнения: <br>
+
+                                                            ';
+                                                        $c = 1;
+                                                        for ($i = 0; $i < count($_SESSION['Dops']); $i++){
+                                                            if ( $_SESSION['Dops'][$i] != 'true') continue;
+                                                            echo $c++. ') ' . $arrDops[$_SESSION['type']]['n'. $i + 1]['name'] . '<br>';
+                                                        }
+                                                        echo '</p>
+
+                                                        <img src="../pic/'. $_SESSION['type'] . '.jpg' .'" alt=" ' . $_SESSION['type'] . ' " style ="width: 100%;">
+                                                       ';
+                                                    }
+                                                    ?>
+
                                                         
              
-                                                 
+
 
 
 
@@ -68,7 +102,13 @@
                                                         <div style="margin-left:22px; margin-top:13px; ">
 
 
-                                                            
+                                                    <?php
+                                                    if($flagOrderDone){
+                                                        echo '
+                                                            <h4>Итоговая сумма: </h4>
+                                                            <p>'. $_SESSION['cost'] .'</p>';
+                                                        }
+                                                    ?>
                                                             
 <br><br><br><br>
                                                    
@@ -77,8 +117,14 @@
                                                         <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w4.gif"></div>
                                                         <div style="margin-left:22px; margin-top:9px; ">
 
-                                                            
-                                                            
+<?php
+if($flagOrderDone){
+    echo '
+                                                            <input type="submit" value="Записать в файл" name="file">
+                                                            <input type="submit" value="Отправить письмо и записать в файл" name="mail">
+                                                            '
+    ;}
+?>
                                                             
                                                                 </div> 
                                                             </div>
@@ -97,6 +143,7 @@
                         </tr>
                     </table>
                 </td>
+                </form>
             </tr>
             <tr>
                 <td valign="top" width="583" height="68" background="../images/row3.gif">
