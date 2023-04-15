@@ -4,3 +4,6 @@ if(isset($_COOKIE['login']) && isset($_COOKIE['password']))
 {
     $flagShowObj = true;
 }
+else{
+    session_unset();
+}

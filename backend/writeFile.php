@@ -1,6 +1,6 @@
 <?php
 
-if(!empty($_SESSION['Days'])) {
+if(!empty($_SESSION['Days']) && !empty($_SESSION['name'])) {
     $file = fopen('../txt_files/' . $_SESSION['name'] . '_' . date('d-m-Y') . '.txt', 'w');
     fwrite($file,
         'Информация о заказе

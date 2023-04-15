@@ -4,7 +4,7 @@ $flagOrderDone = false;
 
 session_start();
 
-if(!empty($_POST['days']) ) {
+if(!empty($_POST['days'])) {
     $_SESSION['country'] = $_POST['country'];
     for ($i = 0; $i < 3; $i++) {
         $arrDop[$i] = false;
@@ -29,7 +29,7 @@ if(!empty($_POST['days']) ) {
     $_SESSION['cost'] = $fullCost;
 }
 
-if(empty($_POST) && !empty($_SESSION['Days']) && $flagShowObj){
+if(empty($_POST) && !empty($_SESSION['Days']) && !empty($_SESSION['name']) && $flagShowObj){
     $flagOrderDone = true;
 
     $flagOrderDone = true;

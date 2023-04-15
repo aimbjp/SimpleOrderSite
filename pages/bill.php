@@ -37,9 +37,8 @@ include "../backend/bill.php";
                      <td valign="top" height="338" width="42"></td>
                      <td valign="top" height="338" width="492">
 <?php
-if($flagShowObj){
+if($flagShowObj && !empty($_SESSION['name'])){
     echo '
-                         <form action="basket.php" method="POST">
                              <table cellpadding="0" cellspacing="0" border="0">
                                  <tr>
                                      <td width="492" valign="top" height="106">
@@ -260,9 +259,12 @@ else{ echo '
                                                      <div style="margin-left:22px; margin-top:16px; "><img src="../images/hl.gif"></div>
                                                      <div style="margin-left:22px; margin-top:7px; "><img src="../images/1_w4.gif"></div>
                                                      <div style="margin-left:22px; margin-top:9px; ">
-
-                                                         <input type="button" value="Вернуться назад" onclick="history.back()">
+                                                        <form action="order.php" method="POST">
+                                                         <input type="submit" value="Вернуться назад" ">
+                                                         </form>
+                                                         <form action="basket.php" method="POST">
                                                          <input type="submit" value="Далее">
+                                                         </form>
                                                      </div>
                                                      </div>
 
@@ -276,13 +278,18 @@ else{ echo '
                                      </td>
                                  </tr>
                              </table>
-                         </form>';
+                         ';
                         }
                         else {
-                            echo '<p>Сначала нужно авторизоваться </p>
+                            if($flagShowObj){
+                                echo '<p>Сделайте первоначальный выбор, Заказ</p>';
+                            }
+                            else {
+                                echo '<p>Сначала нужно авторизоваться </p>
                                                             <form action="../index.php">
                                                             <input type="submit" value="Авторизация">
                                                             </form>';
+                            }
                         }
                         ?>
 
